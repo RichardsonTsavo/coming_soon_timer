@@ -69,107 +69,128 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Row(
                       children: [
-                        FlipPanel.builder(
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              width: sizingInformation.isDesktop?constraints.maxWidth*0.11:constraints.maxWidth*0.2,
-                              height: 128.0,
-                              decoration: BoxDecoration(
-                                color: constStyle.secundaryColor,
-                                borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                        Column(
+                          children: [
+                            FlipPanel.builder(
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.center,
+                                width: sizingInformation.isDesktop?constraints.maxWidth*0.11:constraints.maxWidth*0.2,
+                                height: 125.0,
+                                decoration: BoxDecoration(
+                                  color: constStyle.secundaryColor,
+                                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                                ),
+                                child: Text(
+                                  '${store.days[index]}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
+                                      color: constStyle.primaryColor),
+                                ),
+                              );
+                            },
+                            itemsCount: store.days.length,
+                            period: const Duration(days: 1),
+                            loop: -1,
+                            direction: FlipDirection.down,
+                          ),
+                            Text("Dias",
+                              style: TextStyle(color: constStyle.secundaryColor),)
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Column(
+                          children: [
+                            FlipPanel.builder(
+                              itemBuilder: (context, index) => Container(
+                                alignment: Alignment.center,
+                                width: sizingInformation.isDesktop?constraints.maxWidth*0.08:constraints.maxWidth*0.18,
+                                height: 125.0,
+                                decoration: BoxDecoration(
+                                  color: constStyle.secundaryColor,
+                                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                                ),
+                                child: Text(
+                                  '${store.hours[index]}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
+                                      color: constStyle.primaryColor),
+                                ),
                               ),
-                              child: Text(
-                                '${store.days[index]}',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
-                                    color: constStyle.primaryColor),
+                              itemsCount: store.hours.length,
+                              period: const Duration(hours: 1),
+                              loop: -1,
+                              direction: FlipDirection.down,
+                              startIndex: store.getCurrentIndex(list: 1),
+                            ),
+                            Text("Horas",style: TextStyle(color: constStyle.secundaryColor),)
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Column(
+                          children: [
+                            FlipPanel.builder(
+                              itemBuilder: (context, index) => Container(
+                                alignment: Alignment.center,
+                                width: sizingInformation.isDesktop?constraints.maxWidth*0.08:constraints.maxWidth*0.18,
+                                height: 125.0,
+                                decoration: BoxDecoration(
+                                  color: constStyle.secundaryColor,
+                                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                                ),
+                                child: Text(
+                                  '${store.minutes[index]}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
+                                      color: constStyle.primaryColor),
+                                ),
                               ),
-                            );
-                          },
-                          itemsCount: store.days.length,
-                          period: const Duration(days: 1),
-                          loop: -1,
-                          direction: FlipDirection.down,
+                              itemsCount: store.minutes.length,
+                              period: const Duration(minutes: 1),
+                              loop: -1,
+                              direction: FlipDirection.down,
+                              startIndex: store.getCurrentIndex(list: 2),
+                            ),
+                            Text("Minutos",style: TextStyle(color: constStyle.secundaryColor),)
+                          ],
                         ),
                         const SizedBox(
                           width: 15,
                         ),
-                        FlipPanel.builder(
-                          itemBuilder: (context, index) => Container(
-                            alignment: Alignment.center,
-                            width: sizingInformation.isDesktop?constraints.maxWidth*0.08:constraints.maxWidth*0.18,
-                            height: 128.0,
-                            decoration: BoxDecoration(
-                              color: constStyle.secundaryColor,
-                              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                        Column(
+                          children: [
+                            FlipPanel.builder(
+                              itemBuilder: (context, index) => Container(
+                                alignment: Alignment.center,
+                                width: sizingInformation.isDesktop?constraints.maxWidth*0.08:constraints.maxWidth*0.18,
+                                height: 125.0,
+                                decoration: BoxDecoration(
+                                  color: constStyle.secundaryColor,
+                                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                                ),
+                                child: Text(
+                                  '${store.seconds[index]}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
+                                      color: constStyle.primaryColor),
+                                ),
+                              ),
+                              itemsCount: store.seconds.length,
+                              period: const Duration(milliseconds: 1000),
+                              loop: -1,
+                              direction: FlipDirection.down,
+                              startIndex: store.getCurrentIndex(list: 3),
                             ),
-                            child: Text(
-                              '${store.hours[index]}',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
-                                  color: constStyle.primaryColor),
-                            ),
-                          ),
-                          itemsCount: store.hours.length,
-                          period: const Duration(hours: 1),
-                          loop: -1,
-                          direction: FlipDirection.down,
-                          startIndex: store.getCurrentIndex(list: 1),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        FlipPanel.builder(
-                          itemBuilder: (context, index) => Container(
-                            alignment: Alignment.center,
-                              width: sizingInformation.isDesktop?constraints.maxWidth*0.08:constraints.maxWidth*0.18,
-                            height: 128.0,
-                            decoration: BoxDecoration(
-                              color: constStyle.secundaryColor,
-                              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-                            ),
-                            child: Text(
-                              '${store.minutes[index]}',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
-                                  color: constStyle.primaryColor),
-                            ),
-                          ),
-                          itemsCount: store.minutes.length,
-                          period: const Duration(minutes: 1),
-                          loop: -1,
-                          direction: FlipDirection.down,
-                          startIndex: store.getCurrentIndex(list: 2),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        FlipPanel.builder(
-                          itemBuilder: (context, index) => Container(
-                            alignment: Alignment.center,
-                              width: sizingInformation.isDesktop?constraints.maxWidth*0.08:constraints.maxWidth*0.18,
-                            height: 128.0,
-                            decoration: BoxDecoration(
-                              color: constStyle.secundaryColor,
-                              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-                            ),
-                            child: Text(
-                              '${store.seconds[index]}',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: sizingInformation.isDesktop?constraints.maxWidth*0.05:constraints.maxWidth*0.10,
-                                  color: constStyle.primaryColor),
-                            ),
-                          ),
-                          itemsCount: store.seconds.length,
-                          period: const Duration(milliseconds: 1000),
-                          loop: -1,
-                          direction: FlipDirection.down,
-                          startIndex: store.getCurrentIndex(list: 3),
+                            Text("Segundos",style: TextStyle(color: constStyle.secundaryColor),)
+                          ],
                         ),
                       ],
                     ),
